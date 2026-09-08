@@ -1,13 +1,110 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Website</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      color: white;
+
+      /* Background image */
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+        url("background.jpg") center / cover no-repeat;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top bar */
+    .top-bar {
+      height: 70px;
+      background: rgba(0, 0, 0, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main content */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    main h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    main p {
+      font-size: 20px;
+    }
+
+    /* Bottom bar */
+    .bottom-bar {
+      height: 55px;
+      background: rgba(0, 0, 0, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Hello!</h1>
-    <p>My website is hosted on Cloudflare.</p>
+
+  <header class="top-bar">
+    <div class="logo">My Website</div>
+
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div>
+      <h1>Welcome</h1>
+      <p>A simple website with a beautiful background.</p>
+    </div>
+  </main>
+
+  <footer class="bottom-bar">
+    © 2026 My Website. All rights reserved.
+  </footer>
+
 </body>
 </html>
+```
