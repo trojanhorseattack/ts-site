@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="Logo_White.png">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <title>trojanhorse. Projects</title>
+
+  <style>
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      color: white;
+
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, 0.55),
+          rgba(0, 0, 0, 0.55)
+        ),
+        url("Background_IMage.png") center / cover no-repeat;
+
+      background-attachment: fixed;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      flex: 1;
+      width: 100%;
+      padding: 90px 30px;
+    }
+
+    .projects-container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+
+    /* =========================
+       PAGE TITLE
+    ========================= */
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .page-title h1 {
+      font-size: 65px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-bottom: 15px;
+    }
+
+    .page-title p {
+      font-size: 20px;
+      color: #bbb;
+    }
+
+
+    /* =========================
+       CATEGORY
+    ========================= */
+
+    .category {
+      margin-bottom: 80px;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      margin-bottom: 25px;
+    }
+
+    .category-header i {
+      font-size: 28px;
+    }
+
+    .category-header h2 {
+      font-size: 35px;
+    }
+
+    .category-header p {
+      color: #888;
+      margin-left: 5px;
+    }
+
+
+    /* =========================
+       PROJECT GRID
+    ========================= */
+
+    .project-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+      gap: 25px;
+    }
+
+
+    /* =========================
+       PROJECT CARD
+    ========================= */
+
+    .project-card {
+      position: relative;
+
+      height: 300px;
+
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      cursor: pointer;
+
+      background: #111;
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+
+      border-color:
+        rgba(255, 255, 255, 0.4);
+    }
+
+
+    /* Project image */
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform 0.4s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.06);
+    }
+
+
+    /* Dark gradient */
+
+    .project-card::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          transparent 35%,
+          rgba(0, 0, 0, 0.9)
+        );
+
+      pointer-events: none;
+    }
+
+
+    /* Card information */
+
+    .project-info {
+      position: absolute;
+
+      z-index: 2;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      padding: 25px;
+    }
+
+    .project-info h3 {
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    .project-info p {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+
+      z-index: 1000;
+
+      inset: 0;
+
+      background:
+        rgba(0, 0, 0, 0.85);
+
+      backdrop-filter: blur(8px);
+
+      overflow-y: auto;
+
+      padding: 50px 20px;
+    }
+
+    .modal.active {
+      display: block;
+    }
+
+
+    /* Modal content */
+
+    .modal-content {
+      position: relative;
+
+      max-width: 1000px;
+
+      margin: auto;
+
+      background: #111;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+      border-radius: 15px;
+
+      padding: 35px;
+
+      animation:
+        modalOpen 0.25s ease;
+    }
+
+    @keyframes modalOpen {
+
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* Close button */
+
+    .close-modal {
+      position: absolute;
+
+      top: 20px;
+      right: 25px;
+
+      width: 40px;
+      height: 40px;
+
+      border-radius: 50%;
+
+      border: none;
+
+      background:
+        rgba(255, 255, 255, 0.1);
+
+      color: white;
+
+      font-size: 22px;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    .close-modal:hover {
+      background: white;
+      color: black;
+    }
+
+
+    /* Modal title */
+
+    .modal-content h2 {
+      font-size: 40px;
+
+      margin-bottom: 10px;
+
+      padding-right: 50px;
+    }
+
+    .modal-description {
+      color: #aaa;
+
+      font-size: 17px;
+
+      line-height: 1.7;
+
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================
+       MODAL IMAGE GALLERY
+    ========================= */
+
+    .gallery {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 100%;
+
+      height: 280px;
+
+      object-fit: cover;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      transition: 0.25s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.02);
+      opacity: 0.85;
+    }
+
+
+    /* =========================
+       TAGS
+    ========================= */
+
+    .modal-tags {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-bottom: 30px;
+    }
+
+    .modal-tag {
+      padding: 6px 12px;
+
+      border-radius: 5px;
+
+      background:
+        rgba(255, 255, 255, 0.1);
+
+      color: #ddd;
+
+      font-size: 13px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      main {
+        padding: 60px 20px;
+      }
+
+      .page-title h1 {
+        font-size: 45px;
+      }
+
+      .page-title p {
+        font-size: 17px;
+      }
+
+      .category-header h2 {
+        font-size: 28px;
+      }
+
+      .project-card {
+        height: 250px;
+      }
+
+      .modal {
+        padding: 20px 10px;
+      }
+
+      .modal-content {
+        padding: 25px 20px;
+      }
+
+      .modal-content h2 {
+        font-size: 30px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery img {
+        height: 230px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header class="top-bar">
+
+    <div class="logo">
+      <img src="Logo_White.png" alt="trojanhorse">
+    </div>
+
+    <nav class="nav">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="about.html">
+        About
+      </a>
+
+      <a href="projects.html">
+        Projects
+      </a>
+
+    </nav>
+
+  </header>
+
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+    <div class="projects-container">
+
+
+      <!-- PAGE TITLE -->
+
+      <div class="page-title">
+
+        <h1>Past Projects</h1>
+
+        <p>
+          A collection of my work across Roblox development.
+        </p>
+
+      </div>
+
+
+
+      <!-- ==================================================
+           BUILDING
+      ================================================== -->
+
+      <section class="category">
+
+        <div class="category-header">
+
+          <i class="fa-solid fa-cubes"></i>
+
+          <div>
+
+            <h2>Building</h2>
+
+            <p>
+              Roblox environments, maps, and 3D work.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-grid">
+
+
+          <!-- BUILDING PROJECT 1 -->
+
+          <div
+            class="project-card"
+            onclick="openModal('building1')">
+
+            <img
+              src="projects/building/project1/main.jpg"
+              alt="Building Project">
+
+            <div class="project-info">
+
+              <h3>The Marquee</h3>
+
+              <p>
+                Roblox Music Venue
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- BUILDING PROJECT 2 -->
+
+          <div
+            class="project-card"
+            onclick="openModal('building2')">
+
+            <img
+              src="projects/building/project2/main.png"
+              alt="Building Project">
+
+            <div class="project-info">
+
+              <h3>Arlington National Cemetery</h3>
+
+              <p>
+                Map Design
+              </p>
+
+            </div>
+
+          </div>
+
+<!-- BUILDING PROJECT 3 -->
+
+          <div
+            class="project-card"
+            onclick="openModal('building3')">
+
+            <img
+              src="projects/building/project3/main.png"
+              alt="Building Project">
+
+            <div class="project-info">
+
+              <h3>Montauk Mariners Hockey Arena</h3>
+
+              <p>
+                Sports Arena Design
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           SCRIPTING
+      ================================================== -->
+
+      <section class="category">
+
+        <div class="category-header">
+
+          <i class="fa-solid fa-code"></i>
+
+          <div>
+
+            <h2>Scripting</h2>
+
+            <p>
+              Systems, mechanics, and gameplay programming.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-grid">
+
+
+          <!-- SCRIPTING PROJECT 1 -->
+
+          <div
+            class="project-card"
+            onclick="openModal('scripting1')">
+
+            <img
+              src="projects/scripting/project1/main.gif"
+              alt="Scripting Project">
+
+            <div class="project-info">
+
+              <h3>Hockey Game</h3>
+
+              <p>
+                Gameplay & Luau
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- SCRIPTING PROJECT 2 -->
+
+          <div
+            class="project-card"
+            onclick="openModal('scripting2')">
+
+            <img
+              src="projects/scripting/project2/main.gif"
+              alt="Scripting Project">
+
+            <div class="project-info">
+
+              <h3>Miscellaneous Projects</h3>
+
+              <p>
+                A few random projects I've made over the years.
+              </p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           GFX
+      ================================================== -->
+
+      <section class="category">
+
+        <div class="category-header">
+
+          <i class="fa-solid fa-palette"></i>
+
+          <div>
+
+            <h2>GFX</h2>
+
+            <p>
+              Graphics, renders, thumbnails, and promotional art.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-grid">
+
+
+          <!-- GFX PROJECT 1 -->
+
+          <div
+            class="project-card"
+            onclick="openModal('gfx1')">
+
+            <img
+              src="projects/gfx/project1/main.png"
+              alt="GFX Project">
+
+            <div class="project-info">
+
+              <h3>Arlington National Cemetery GFX</h3>
+
+              <p>
+                Promotional GFX
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- GFX PROJECT 2 -->
+
+          <div
+            class="project-card"
+            onclick="openModal('gfx2')">
+
+            <img
+              src="projects/gfx/project2/main.png"
+              alt="GFX Project">
+
+            <div class="project-info">
+
+              <h3>Hockey Graphics</h3>
+
+              <p>
+                Roblox GFX
+              </p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+
+  <!-- ==================================================
+       BUILDING PROJECT 1 MODAL
+  ================================================== -->
+
+  <div class="modal" id="building1">
+
+    <div class="modal-content">
+
+      <button
+        class="close-modal"
+        onclick="closeModal('building1')">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+
+      <h2>The Marquee</h2>
+
+      <p class="modal-description">
+
+        A Roblox environment created for an
+        immersive gameplay experience.
+
+        I worked on the environment design,
+        architecture, details, and overall atmosphere. I used real life blueprints provided by the real venue, to create a true to life experience. 
+
+      </p>
+
+
+      <div class="modal-tags">
+
+        <span class="modal-tag">
+          Roblox Studio
+        </span>
+
+        <span class="modal-tag">
+          Building
+        </span>
+
+        <span class="modal-tag">
+          Environment Design
+        </span>
+
+      </div>
+
+
+      <div class="gallery">
+
+        <img
+          src="projects/building/project1/main.jpg"
+          alt="The Marquee">
+
+        <img
+          src="projects/building/project1/image2.jpg"
+          alt="The Marquee">
+
+        <img
+          src="projects/building/project1/image3.jpg"
+          alt="The Marquee">
+
+        <img
+          src="projects/building/project1/image4.jpg"
+          alt="The Marquee">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ==================================================
+       BUILDING PROJECT 2 MODAL
+  ================================================== -->
+
+  <div class="modal" id="building2">
+
+    <div class="modal-content">
+
+      <button
+        class="close-modal"
+        onclick="closeModal('building2')">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+      <h2>Arlington National Cemetery</h2>
+
+      <p class="modal-description">
+
+        A custom Roblox map focused on creating
+        an interesting and detailed environment based on a National U.S. Shrine.
+
+      </p>
+
+      <div class="modal-tags">
+
+        <span class="modal-tag">
+          Building
+        </span>
+
+        <span class="modal-tag">
+          Map Design
+        </span>
+
+      </div>
+
+      <div class="gallery">
+
+        <img src="projects/building/project2/main.png">
+        <img src="projects/building/project2/image2.png">
+        <img src="projects/building/project2/image3.png">
+        <img src="projects/building/project2/image4.png">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--Class 3-->
+   <div class="modal" id="building3">
+
+    <div class="modal-content">
+
+      <button
+        class="close-modal"
+        onclick="closeModal('building3')">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+      <h2>Montauk Mariners Hockey Arena</h2>
+
+      <p class="modal-description">
+
+        A built from scratch hockey arena built in Roblox Studio for a hockey game. I designed the arena to be realistic and immersive, with attention to detail in the architecture and layout.
+
+      </p>
+
+      <div class="modal-tags">
+
+        <span class="modal-tag">
+          Building
+        </span>
+
+        <span class="modal-tag">
+          Arenas
+        </span>
+
+        <span class="modal-tag">
+          Sports
+        </span>
+
+      </div>
+
+      <div class="gallery">
+
+        <img src="projects/building/project3/main.png">
+        <img src="projects/building/project3/image1.png">
+        <img src="projects/building/project3/image2.png">
+        <img src="projects/building/project3/image3.png">
+        <img src="projects/building/project3/image4.png">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ==================================================
+       SCRIPTING PROJECT 1 MODAL
+  ================================================== -->
+
+  <div class="modal" id="scripting1">
+
+    <div class="modal-content">
+
+      <button
+        class="close-modal"
+        onclick="closeModal('scripting1')">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+      <h2>Hockey Game</h2>
+
+      <p class="modal-description">
+
+        I created a Roblox Hockey game, from scratch, that provided drop-in gameplay, as well as organized league play. I created many systems such as an automated officiating system, gameplay mechanics, and much more.
+      </p>
+
+      <div class="modal-tags">
+
+        <span class="modal-tag">
+          Luau
+        </span>
+
+        <span class="modal-tag">
+          Gameplay
+        </span>
+
+        <span class="modal-tag">
+          Sports
+        </span>
+
+      </div>
+
+      <div class="gallery">
+
+        <img src="projects/scripting/project1/main.gif">
+        <img src="projects/scripting/project1/image2.png">
+        <img src="projects/scripting/project1/image3.gif">
+        <img src="projects/scripting/project1/image4.png">
+        <img src="projects/scripting/project1/image5.gif">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ==================================================
+       SCRIPTING PROJECT 2 MODAL
+  ================================================== -->
+
+  <div class="modal" id="scripting2">
+
+    <div class="modal-content">
+
+      <button
+        class="close-modal"
+        onclick="closeModal('scripting2')">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+      <h2>Miscellaneous Projects</h2>
+
+      <p class="modal-description">
+
+        A few random projects I've made over the years. This is not an exhaustive list of what I've programmed.
+
+      </p>
+
+      <div class="modal-tags">
+
+        <span class="modal-tag">
+          Luau
+        </span>
+
+       
+
+      </div>
+
+      <div class="gallery">
+
+        <img src="projects/scripting/project2/main.gif">
+        <img src="projects/scripting/project2/image2.gif">
+        <img src="projects/scripting/project2/image3.gif">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ==================================================
+       GFX PROJECT 1 MODAL
+  ================================================== -->
+
+  <div class="modal" id="gfx1">
+
+    <div class="modal-content">
+
+      <button
+        class="close-modal"
+        onclick="closeModal('gfx1')">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+      <h2>Arlington National Cemetery GFX</h2>
+
+      <p class="modal-description">
+
+        A promotional Roblox GFX created for a game
+        thumbnail and marketing material for an Arlington National Cemetery group.
+
+      </p>
+
+      <div class="modal-tags">
+
+        <span class="modal-tag">
+          GFX
+        </span>
+
+        <span class="modal-tag">
+          Rendering
+        </span>
+
+        <span class="modal-tag">
+          Photoshop
+        </span>
+
+      </div>
+
+      <div class="gallery">
+
+        <img src="projects/gfx/project1/main.png">
+        <img src="projects/gfx/project1/image2.png">
+        <img src="projects/gfx/project1/image3.png">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ==================================================
+       GFX PROJECT 2 MODAL
+  ================================================== -->
+
+  <div class="modal" id="gfx2">
+
+    <div class="modal-content">
+
+      <button
+        class="close-modal"
+        onclick="closeModal('gfx2')">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+      <h2>Hockey Graphics</h2>
+
+      <p class="modal-description">
+
+        Several different graphics I made for various Roblox Hockey games across the platform.
+
+      </p>
+
+      <div class="modal-tags">
+
+        <span class="modal-tag">
+          GFX
+        </span>
+
+        <span class="modal-tag">
+          3D
+        </span>
+
+        <span class="modal-tag">
+          Rendering
+        </span>
+
+      </div>
+
+      <div class="gallery">
+
+        <img src="projects/gfx/project2/main.png">
+        <img src="projects/gfx/project2/image2.png">
+        <img src="projects/gfx/project2/image3.png">
+        <img src="projects/gfx/project2/image4.png">
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer class="bottom-bar">
+
+    <a
+      href="https://x.com/trojanhorseatck"
+      target="_blank"
+      rel="noopener noreferrer">
+
+      <i class="fa-brands fa-x-twitter"></i>
+
+    </a>
+
+    <a
+      href="https://discord.gg/bMYsXbca63"
+      target="_blank"
+      rel="noopener noreferrer">
+
+      <i class="fa-brands fa-discord"></i>
+
+    </a>
+
+  </footer>
+
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    function openModal(id) {
+
+      const modal =
+        document.getElementById(id);
+
+      modal.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+
+    }
+
+
+    function closeModal(id) {
+
+      const modal =
+        document.getElementById(id);
+
+      modal.classList.remove("active");
+
+      document.body.style.overflow = "auto";
+
+    }
+
+
+    /* Close when clicking outside */
+
+    document.querySelectorAll(".modal").forEach(modal => {
+
+      modal.addEventListener("click", function(event) {
+
+        if (event.target === modal) {
+
+          modal.classList.remove("active");
+
+          document.body.style.overflow = "auto";
+
+        }
+
+      });
+
+    });
+
+
+    /* Close with ESC */
+
+    document.addEventListener("keydown", function(event) {
+
+      if (event.key === "Escape") {
+
+        document.querySelectorAll(".modal").forEach(modal => {
+
+          modal.classList.remove("active");
+
+        });
+
+        document.body.style.overflow = "auto";
+
+      }
+
+    });
+
+  </script>
+
+
+</body>
+
+</html>
